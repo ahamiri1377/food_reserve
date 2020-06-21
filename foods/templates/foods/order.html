@@ -1,0 +1,37 @@
+{% extends 'foods/base.html' %}
+
+{% block content %}
+<html>
+    <body>
+        {% if user.is_authenticated %}
+            <h2 class="text-center"> {{month}} </h2>
+            <div class="container-fliud">
+                <div class="card-deck">
+                    <!-- <form action="/account" method="POST" class="form-group"> -->
+                    {% for w in week %}
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p class="card-text">{{ w }}</p>
+                            <form action="/account" method="POST">
+                            <select name="restur" id="restur" class="form-control">
+                                {% for r in all_rest %}
+                                    <option value="{{r.res_name}}">{{ r.res_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <select name="food" id="food" class="form-control">
+                                {% for f in all_foods %}
+                                    <option value="{{f.food_name}}">{{ f.food_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>    
+                    {% endfor %}
+                    <!-- </form> -->
+                </div>
+            </div>
+        {% endif %}
+    </body>
+</html>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'foods/base.html' %}
+
+{% block content %}
+    <script>
+        function null_text(){
+            var a = document.getElementById('text');
+            a.innerHTML = '';
+        }
+        function timer(){
+                setTimeout(null_text, 10000);
+        }
+        function change_text(){
+            var a = document.getElementById('text');
+            a.innerHTML = 'new food added!';
+            timer();
+        }
+
+
+    </script>
+    {% if user.is_authenticated %}
+        <h4>Please Apply the Food:</h4>
+        <form method="POST" action="{% url 'apply' %}" onsubmit="change_text()">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">apply</button>
+        </form>
+        <p>&nbsp;</p>
+        <h5 id="text" style="color: green;"></h5>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'foods/base.html' %}
+
+{% block content %}
+<html>
+    <body>
+        {% if user.is_authenticated %}
+            <h4>hello {{username}}</h4>
+            <div>
+                {% if group == 'admins' %}
+                    <button class="btn btn-blue big"><a href="/apply_food">Apply Food </a></button>
+                {% else %}
+                    <button class="btn btn-blue big"><a href="/account">Order Food </a></button>
+                {% endif %}
+            </div>
+      
+        {% else %}
+            <h4>hello new user</h4>
+        {% endif %}
+    </body>
+</html>
+{% endblock %}
